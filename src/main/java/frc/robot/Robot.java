@@ -1,12 +1,15 @@
 package frc.robot;
 
 import com.chopshop166.chopshoplib.CommandRobot;
+import com.chopshop166.chopshoplib.controls.ButtonXboxController;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.maps.PracticeBot;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Maflipulator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,7 +20,9 @@ import frc.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends CommandRobot {
     final private RobotMap robotMap = new PracticeBot();
-    final private ExampleSubsystem exampleSubsystem = new ExampleSubsystem(robotMap);
+    final public static ButtonXboxController coPilot = new ButtonXboxController(1);
+    final private Lift lift = new Lift(robotMap.getLiftMap());
+    final private Maflipulator maflipulator = new Maflipulator(robotMap.getMaflipulatorMap());
 
     private Command autonomousCommand;
     final private SendableChooser<Command> chooser = new SendableChooser<>();
@@ -31,7 +36,7 @@ public class Robot extends CommandRobot {
         // Initialize OI here
 
         // Initialize autonomous chooser
-        chooser.setDefaultOption("Default Auto", exampleSubsystem.sampleCommand());
+        // chooser.setDefaultOption("Default Auto", exampleSubsystem.sampleCommand());
         // chooser.addOption("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }

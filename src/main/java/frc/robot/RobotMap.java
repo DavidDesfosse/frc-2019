@@ -4,6 +4,8 @@ import com.chopshop166.chopshoplib.outputs.SendableSpeedController;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 /**
  * The RobotMap is an interface that contains the instructions on how to make a
@@ -32,4 +34,25 @@ public interface RobotMap {
         DigitalInput getintakePositionLimitSwitch();
     }
 
+    LiftMap getLiftMap();
+
+    interface LiftMap {
+
+        SendableSpeedController getLiftMotor();
+
+        Encoder getHeightEncoder();
+
+        DigitalInput getTopLimitSwitch();
+
+        DigitalInput getBottomLimitSwitch();
+    }
+
+    MaflipulatorMap getMaflipulatorMap();
+
+    interface MaflipulatorMap {
+
+        SendableSpeedController getFlipMotor();
+
+        Potentiometer getManipulatorPot();
+    }
 }
